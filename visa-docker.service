@@ -1,0 +1,16 @@
+[Unit]
+Description=VISA
+Requires=docker.service
+After=docker.service
+
+[Service]
+User=vagrant
+Type=simple
+Restart=always
+RemainAfterExit=yes
+ExecStart=/usr/bin/docker-compose -f /vagrant/docker-compose.yml up -d
+ExecStop=/usr/bin/docker-compose -f /vagrant/docker-compose.yml down
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,61 @@
+{
+    "sections": [
+        {
+            "title": "Compute Instances",
+            "icon": "assets/icons/instances.png",
+            "path": "instances",
+            "description": "Learn how to create and manage your own compute instances",
+            "items": [
+                {
+                    "title": "What is an instance?",
+                    "path": "about"
+                },
+                {
+                    "title": "How do I create an instance?",
+                    "path": "creating"
+                },
+                {
+                    "title": "How do I connect to the Remote Desktop?",
+                    "path": "connect-remote-desktop"
+                },
+                {
+                    "title": "How do I open the JupyterLab environment?",
+                    "path": "open-jupyterlab"
+                },
+                {
+                    "title": "How do I manage shared access to an instance?",
+                    "path": "managing-access"
+                },
+                {
+                    "title": "When does my instance expire?",
+                    "path": "expiration"
+                },
+                {
+                    "title": "How do I transfer files on my personal computer?",
+                    "path": "transfering-files"
+                },
+                {
+                    "title": "How do I provide user support?",
+                    "path": "support",
+                    "roles": ["INSTRUMENT_CONTROL", "INSTRUMENT_SCIENTIST", "IT_SUPPORT"]
+                }
+            ]
+        },
+        {
+            "title": "Data Analysis",
+            "icon": "assets/icons/data-analysis.png",
+            "path": "data-analysis",
+            "description": "Learn which tools are available to start analysing your experimental data",
+            "items": [
+                {
+                    "title": "Which scientific software is installed?",
+                    "path": "scientific-software"
+                },
+                {
+                    "title": "How do I use Conda to manage analysis environments?",
+                    "path": "conda"
+                }
+            ]
+        }
+    ]
+}

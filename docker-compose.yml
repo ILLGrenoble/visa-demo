@@ -1,0 +1,92 @@
+version: "3"
+
+volumes:
+  keycloak_data: {}
+  visa_data: {}
+
+networks:
+  default:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      - subnet: 10.10.11.1/24
+
+services:
+  keycloak:
+    image: jboss/keycloak
+    environment:
+      - DB_VENDOR=h2
+      - KEYCLOAK_USER=keycloak
+      - KEYCLOAK_PASSWORD=keycloak
+      - KEYCLOAK_IMPORT=/tmp/keycloak_realm.json
+      - KEYCLOAK_LOGLEVEL=INFO
+      - no_proxy=keycloak
+    volumes: 
+      - keycloak_data:/opt/jboss/keycloak/standalone/data
+      - ./volumes/keycloak/keycloak_realm.json:/tmp/keycloak_realm.json
+    ports:
+      - "9990:8080"
+    restart: always
+
+  visa-db:
+    image: postgres:9
+    volumes:
+      - visa_data:/var/lib/postgresql/data
+      - ./volumes/postgres:/docker-entrypoint-initdb.d/
+    environment: 
+      - POSTGRES_USER=visa
+      - POSTGRES_PASSWORD=visa
+    ports:
+      - "5432:5432"
+
+  maildev:
+    image: maildev/maildev
+    ports:
+      - "7080:80"
+      - "1025:1025"
+
+  proxy:
+    image: nginx:latest
+    volumes:
+      - ./volumes/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./volumes/nginx/visa-docs:/data/visa-docs
+    logging:
+      options:
+        max-size: "100m"
+        max-file: "3"
+    ports:
+      - "80:80"
+      - "443:443"
+    links:
+      - web
+      - api
+      - jupyter-proxy
+      
+  web:
+    image: illgrenoble/visa-web:2.0.2
+
+  api:
+    image: illgrenoble/visa-api-server:2.0.2
+    volumes:
+      - ./volumes/visa/vdi:/usr/vdi/certs
+    env_file: demo.env
+    links:
+      - accounts
+      - visa-db
+
+  jupyter-proxy:
+    image: illgrenoble/visa-jupyter-proxy:2.0.2
+    env_file: demo.env
+    links:
+      - api
+
+  accounts:
+    image: illgrenoble/visa-accounts:2.0.2
+    volumes:
+      - ./volumes/visa/accounts/attribute-provider.js:/app/accountAttributeProviders/attribute-provider.js
+    env_file: demo.env
+    depends_on:
+      - keycloak
+    restart: always
+

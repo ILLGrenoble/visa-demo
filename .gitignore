@@ -1,0 +1,4 @@
+*.img
+.swp
+.vagrant
+build
