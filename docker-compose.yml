@@ -64,10 +64,10 @@ services:
       - jupyter-proxy
       
   web:
-    image: illgrenoble/visa-web:2.1
+    image: illgrenoble/visa-web:2.2.0
 
   api:
-    image: illgrenoble/visa-api-server:2.1
+    image: illgrenoble/visa-api-server:2.2.0
     volumes:
       - ./volumes/visa/vdi:/usr/vdi/certs
     env_file: demo.env
@@ -76,13 +76,13 @@ services:
       - visa-db
 
   jupyter-proxy:
-    image: illgrenoble/visa-jupyter-proxy:2.1
+    image: illgrenoble/visa-jupyter-proxy:2.2.0
     env_file: demo.env
     links:
       - api
 
   accounts:
-    image: illgrenoble/visa-accounts:2.1
+    image: illgrenoble/visa-accounts:2.2.0
     volumes:
       - ./volumes/visa/accounts/attribute-provider.js:/app/accountAttributeProviders/attribute-provider.js
     env_file: demo.env
