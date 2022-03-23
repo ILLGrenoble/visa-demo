@@ -662,13 +662,13 @@
   }, {
     "id" : "4b15cbb9-25fd-4f7b-b7d2-6b862e006a4c",
     "clientId" : "visa-api",
-    "rootUrl" : "http://10.50.0.120/",
-    "adminUrl" : "http://10.50.0.120/",
+    "rootUrl" : "http://localhost/",
+    "adminUrl" : "http://localhost/",
     "surrogateAuthRequired" : false,
     "enabled" : true,
     "alwaysDisplayInConsole" : false,
     "clientAuthenticatorType" : "client-secret",
-    "redirectUris" : [ "https://10.50.0.120/*", "http://10.50.0.120/*" ],
+    "redirectUris" : [ "https://localhost/*", "http://localhost/*" ],
     "webOrigins" : [ "*" ],
     "notBefore" : 0,
     "bearerOnly" : false,
@@ -1888,7 +1888,7 @@
     "oauth2DeviceCodeLifespan" : "600",
     "clientSessionMaxLifespan" : "0",
     "parRequestUriLifespan" : "60",
-    "frontendUrl" : "http://10.50.0.120:9990/auth"
+    "frontendUrl" : "http://localhost:9990/auth"
   },
   "keycloakVersion" : "15.0.2",
   "userManagedAccessAllowed" : false,
