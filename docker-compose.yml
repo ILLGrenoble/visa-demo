@@ -3,6 +3,7 @@ version: "3"
 volumes:
   keycloak_data: {}
   visa_data: {}
+  migrations: {}
 
 networks:
   default:
@@ -13,6 +14,15 @@ networks:
       - subnet: 10.10.11.1/24
 
 services:
+  # Use dbmate if you want to automatically apply DB migrations when starting the services
+  # dbmate:
+  #   image: amacneil/dbmate:1
+  #   environment:
+  #     - DATABASE_URL=postgresql:<username>:<password>@<database_host>:5432/<database>?search_path=<schema>
+  #   entrypoint:  ["/usr/local/bin/dbmate", "--no-dump-schema", "up"]
+  #   volumes:
+  #     - migrations:/db/migrations:ro
+
   keycloak:
     image: jboss/keycloak
     environment:
@@ -70,6 +80,7 @@ services:
     image: illgrenoble/visa-api-server:2.2.0
     volumes:
       - ./volumes/visa/vdi:/usr/vdi/certs
+      - migrations:/app/db/migrations
     env_file: demo.env
     links:
       - accounts
