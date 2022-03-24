@@ -22,6 +22,8 @@ services:
   #   entrypoint:  ["/usr/local/bin/dbmate", "--no-dump-schema", "up"]
   #   volumes:
   #     - migrations:/db/migrations:ro
+  #   depends_on:
+  #     - api
 
   keycloak:
     image: jboss/keycloak
