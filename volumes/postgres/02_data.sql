@@ -35,8 +35,8 @@ INSERT INTO protocol (name, port) VALUES ('RDP', 3389);
 INSERT INTO protocol (name, port) VALUES ('GUACD', 4822);
 INSERT INTO protocol (name, port) VALUES ('JUPYTER', 8888);
 
-INSERT INTO flavour (id, created_at, updated_at, compute_id, cpu, deleted, memory, name) VALUES
-    (1, '2021-01-01', '2021-01-01', '25', 2, false, 8192, 'Small');
+INSERT INTO flavour (id, created_at, updated_at, compute_id, cpu, deleted, memory, credits, name) VALUES
+    (1, '2021-01-01', '2021-01-01', '25', 2, false, 8192, 1, 'Small');
 
 INSERT INTO image (id, created_at, updated_at, compute_id, deleted, icon, name, visible, boot_command, autologin, description, version) VALUES
     (1,  '2021-01-01', '2021-01-01', '1a987fb2-fced-48e8-b1f1-410d7681286b', false, 'data-analysis-1.jpg', 'Data Analysis (demo)', true, '#!/bin/bash

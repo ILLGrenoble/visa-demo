@@ -55,6 +55,7 @@ create table if not exists flavour (
     deleted     boolean                                            not null,
     memory      integer                                            not null,
     name        varchar(250)                                       not null,
+    credits     integer                                            default 1 not null,
 
     description varchar(2500),
     constraint flavour_pkey primary key (id)
